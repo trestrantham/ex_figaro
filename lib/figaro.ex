@@ -1,0 +1,2 @@
+defmodule Figaro do
+end
