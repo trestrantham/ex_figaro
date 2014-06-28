@@ -1,19 +1,40 @@
 defmodule Figaro do
-  def load do
+  alias Figaro.Utils
+
+  @doc """
+  Starts a new Figaro server and sets the ENV with variables
+  defined in config/application.yml
+  """
+  def start_link do
+    config = load_config
+
+    set_env(config)
+
+    Agent.start_link(fn -> config end, name: :config)
+  end
+
+  @doc """
+  Gets the ENV variable defined in config/application.yml
+  """
+  def env do
+    Agent.get(:config, fn map -> map end)
+  end
+
+  def load_config do
     config_file
     |> :yamerl_constr.file
     |> List.flatten
-    |> Enum.each(fn var -> System.put_env(format_env_key(var), format_env_value(var)) end)
+    |> Utils.cleanse_yaml
+    |> Enum.into(Map.new)
   end
 
-  def get(key) do
-    key
-    |> to_string
-    |> String.upcase
-    |> System.get_env
+  def set_env(config) do
+    config
+    |> Utils.prepare_for_env
+    |> System.put_env
   end
 
-  defp config_file do
+  def config_file do
     file = File.cwd!
            |> Path.join("config")
            |> Path.join("application.yml")
@@ -22,18 +43,5 @@ defmodule Figaro do
       File.exists?(file) -> file
       true               -> raise "application.yml not found"
     end
-  end
-
-  defp format_env_key(env_key) do
-    env_key
-    |> elem(0)
-    |> to_string
-    |> String.upcase
-  end
-
-  defp format_env_value(env_value) do
-    env_value
-    |> elem(1)
-    |> to_string
   end
 end
