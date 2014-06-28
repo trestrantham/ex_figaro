@@ -1,1 +1,5 @@
-%{"yamerl": {:git, "git://github.com/yakaz/yamerl.git", "174e823779f8f90acfad24a8d7b236f68f78b443", []}}
+%{"excoveralls": {:git, "git://github.com/parroty/excoveralls.git", "38625ea6d32d633b184284b5eb5c79e7bfc28258", []},
+  "exprintf": {:package, "0.1.2"},
+  "jsex": {:package, "2.0.0"},
+  "jsx": {:package, "2.0.4"},
+  "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "174e823779f8f90acfad24a8d7b236f68f78b443", []}}

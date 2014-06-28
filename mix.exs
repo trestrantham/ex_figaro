@@ -6,7 +6,9 @@ defmodule Figaro.Mixfile do
       app: :figaro,
       version: "0.0.1",
       elixir: "~> 0.14.1",
-      deps: deps
+      deps: deps,
+      test_coverage: [tool: ExCoveralls],
+      build_per_environment: true
     ]
   end
 
@@ -18,7 +20,8 @@ defmodule Figaro.Mixfile do
 
   defp deps do
     [
-      { :yamerl, github: "yakaz/yamerl" }
+      { :yamerl, github: "yakaz/yamerl" },
+      { :excoveralls, github: "parroty/excoveralls" }
     ]
   end
 end
