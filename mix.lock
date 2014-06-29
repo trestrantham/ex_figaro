@@ -2,4 +2,6 @@
   "exprintf": {:package, "0.1.2"},
   "jsex": {:package, "2.0.0"},
   "jsx": {:package, "2.0.4"},
-  "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "174e823779f8f90acfad24a8d7b236f68f78b443", []}}
+  "meck": {:git, "git://github.com/eproxus/meck.git", "dde759050eff19a1a80fd854d7375174b191665d", [tag: "0.8.2"]},
+  "mock": {:git, "git://github.com/parroty/mock.git", "cd6ddd5c37a9da2d2da72f1f3060a7336ef4c7f5", [ref: "version"]},
+  "yamerl": {:git, "git://github.com/yakaz/yamerl.git", "e087f5737425fd64cd2deb10e2b5e8f136f6034c", []}}
