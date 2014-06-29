@@ -25,3 +25,36 @@ end
 ```
 
 After you are done, run `mix deps.get` in your shell to fetch the dependencies.
+
+### Usage
+
+Given the following configuration file:
+
+```yaml
+# config/application.yml
+
+foo: bar
+baz: qux
+```
+
+You will have access to configuration values via `Figaro.env`:
+
+```elixir
+iex> Figaro.env.foo
+"bar"
+iex> Figaro.env.baz
+"qux"
+iex> Figaro.env
+%{foo: "bar", baz: "qux"}
+```
+
+Figaro also sets `ENV` with values defined in `application.yml`:
+
+```elixir
+iex> System.get_env("FOO")
+"bar"
+iex> System.get_env("BAZ")
+"qux"
+```
+
+**Please note:** `ENV` is a simple key/value store. All values will be converted to strings. Deeply nested configuration structures are not possible.

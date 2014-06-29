@@ -24,7 +24,7 @@ defmodule Figaro.Mixfile do
   defp deps do
     [
       { :yamerl, github: "yakaz/yamerl" },
-      { :excoveralls, github: "parroty/excoveralls" }
+      { :excoveralls, github: "parroty/excoveralls", only: [:dev, :test] }
     ]
   end
 
