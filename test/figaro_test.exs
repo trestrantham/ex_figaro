@@ -2,21 +2,16 @@ defmodule FigaroTest do
   use ExUnit.Case, async: true
 
   setup_all do
+    # the application starts automatically which uses config/application.yml
+    # so let's stop it and change to our test directory to use our fixtures
+    Application.stop(:figaro)
     File.cd! "test/fixtures/project"
+    Application.start(:figaro)
 
     on_exit fn ->
       System.delete_env("FOO")
       System.delete_env("BAR")
     end
-  end
-
-  setup do
-    { :ok, _pid } = Figaro.start_link
-    :ok
-  end
-
-  teardown do
-    Agent.stop(:config)
   end
 
   test "parsing config.yml file" do

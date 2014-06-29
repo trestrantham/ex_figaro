@@ -1,5 +1,11 @@
 defmodule Figaro do
+  use Application
+
   alias Figaro.Utils
+
+  def start(_type, _args) do
+    Figaro.Supervisor.start_link
+  end
 
   @doc """
   Starts a new Figaro server and sets the ENV with variables

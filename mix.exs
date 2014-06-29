@@ -14,6 +14,7 @@ defmodule Figaro.Mixfile do
 
   def application do
     [
+      mod: { Figaro, [] },
       applications: [:yamerl]
     ]
   end
