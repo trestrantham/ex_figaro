@@ -1,10 +1,13 @@
 defmodule Figaro do
   use Application
-
   alias Figaro.Utils
 
   def start(_type, _args) do
-    Figaro.Supervisor.start_link
+    import Supervisor.Spec
+    children = [worker(Figaro, [])]
+
+    opts = [strategy: :one_for_one, name: Figaro.Supervisor]
+    Supervisor.start_link(children, opts)
   end
 
   @doc """
