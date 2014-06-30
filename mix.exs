@@ -17,13 +17,13 @@ defmodule Figaro.Mixfile do
   def application do
     [
       mod: { Figaro, [] },
-      applications: [:yamerl]
+      applications: []
     ]
   end
 
   defp deps do
     [
-      { :yamerl, github: "yakaz/yamerl" },
+      { :yamler, github: "goertzenator/yamler" },
       { :excoveralls, github: "parroty/excoveralls", only: [:dev, :test] }
     ]
   end

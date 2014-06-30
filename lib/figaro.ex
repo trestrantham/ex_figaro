@@ -11,8 +11,8 @@ defmodule Figaro do
   end
 
   @doc """
-  Starts a new Figaro server and sets the ENV with variables
-  defined in config/application.yml
+  Start a new Figaro server and set ENV with configuration
+  defined in application.yml
   """
   def start_link do
     config = load_config
@@ -23,18 +23,14 @@ defmodule Figaro do
   end
 
   @doc """
-  Gets the ENV variable defined in config/application.yml
+  Get the data currently in `config`
   """
   def env do
     Agent.get(:config, fn map -> map end)
   end
 
   def load_config do
-    config_file
-    |> :yamerl_constr.file
-    |> List.flatten
-    |> Utils.cleanse_yaml
-    |> Enum.into(Map.new)
+    config_file |> Utils.parse_yaml
   end
 
   def set_env(config) do
