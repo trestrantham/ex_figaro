@@ -9,9 +9,16 @@ defmodule FigaroConfigTest do
     assert Config.process_raw(input) == output
   end
 
-  test "Config.process_raw gives precedence to current environment configurations" do
+  test "Config.process_raw applies environment-specific configurations" do
     input  = %{foo: "bar", baz: "qux", test: %{foo: "baz"}}
     output = %{foo: "baz", baz: "qux"}
+
+    assert Config.process_raw(input) == output
+  end
+
+  test "Config.process_raw nullifies environment-specific configurations" do
+    input  = %{foo: "bar", baz: "qux", test: %{foo: nil}}
+    output = %{foo: nil, baz: "qux"}
 
     assert Config.process_raw(input) == output
   end

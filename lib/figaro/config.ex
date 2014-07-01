@@ -1,6 +1,8 @@
 defmodule Figaro.Config do
   def process_raw(config) do
-    env_config = config |> get_env_config
+    env_config = config
+                 |> get_env_config
+                 |> Enum.into(Map.new)
 
     config
     |> get_default_config
@@ -9,7 +11,7 @@ defmodule Figaro.Config do
 
   defp get_default_config(config) do
     config
-    |> Enum.filter(fn { key, value } -> !is_map(value) end)
+    |> Enum.filter(fn { _key, value } -> !is_map(value) end)
     |> Enum.into(Map.new)
   end
 
@@ -19,8 +21,8 @@ defmodule Figaro.Config do
                  |> List.last # last one wins
 
     cond do
-      env_config == nil         -> %{}
-      { key, map } = env_config -> map
+      env_config == nil          -> %{}
+      { _key, map } = env_config -> map
     end
   end
 end
