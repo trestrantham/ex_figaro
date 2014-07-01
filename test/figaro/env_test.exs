@@ -2,16 +2,29 @@ defmodule FigaroEnvTest do
   use ExUnit.Case, async: true
   alias Figaro.Env
 
-  test "Env.prepare_config converts config to a list" do
-    input  = %{foo: "bar", baz: "qux"}
-
-    assert is_list(Env.prepare_config(input))
+  setup do
+    on_exit fn ->
+      System.delete_env("FOO")
+      System.delete_env("BAZ")
+    end
   end
 
-  test "Env.prepare_config converts configs keys to uppercase" do
+  test "Env.update applies the given `config` to the ENV" do
     input  = %{foo: "bar", baz: "qux"}
-    output = [{"FOO", "bar"}, {"BAZ", "qux"}] |> Enum.reverse
 
-    assert Env.prepare_config(input) == output
+    assert :ok = Env.update(input)
+    assert System.get_env("FOO") == "bar"
+    assert System.get_env("BAZ") == "qux"
+  end
+
+  test "Env.update unsets ENV variables appropriately" do
+    input  = %{foo: nil, baz: "qux"}
+    System.put_env("FOO", "foo")
+
+    assert System.get_env("FOO") == "foo"
+
+    assert :ok = Env.update(input)
+    assert System.get_env("FOO") == nil
+    assert System.get_env("BAZ") == "qux"
   end
 end

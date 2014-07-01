@@ -12,6 +12,7 @@ defmodule Figaro.Yaml do
     |> Enum.map(fn { key, value } ->
          value = cond do
            value |> is_list -> format(value)
+           value == :null   -> nil
            true             -> value |> to_string
          end
 
