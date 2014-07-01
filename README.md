@@ -3,8 +3,10 @@ Figaro
 [![Build Status](http://img.shields.io/travis/trestrantham/ex_figaro.svg?style=flat "Build Status")](http://travis-ci.org/trestrantham/ex_figaro)
 [![Coverage Status](http://img.shields.io/coveralls/trestrantham/ex_figaro.svg?style=flat)](https://coveralls.io/r/trestrantham/ex_figaro?branch=master)
 
-Port of [@laserlemon](http://github.com/laserlemon)'s [Figaro](http://github.com/laserlemon/figaro) project to Elixir. Please see the original project
-for details about how Figaro works.
+Port of [@laserlemon](http://github.com/laserlemon)'s [Figaro](http://github.com/laserlemon/figaro)
+gem to Elixir. Please see original project for additional details and history.
+Documentation is lifted from [@laserlemon](http://github.com/laserlemon)'s gem
+verbatim (where applicable) in an effort to provide full feature parity.
 
 ### Getting Started
 
@@ -57,4 +59,21 @@ iex> System.get_env("BAZ")
 "qux"
 ```
 
-**Please note:** `ENV` is a simple key/value store. All values will be converted to strings. Deeply nested configuration structures are not possible.
+**Please note:** `ENV` is a simple key/value store. All values will be converted
+to strings. Deeply nested configuration structures are not possible.
+
+### Environment-Specific Configuration
+
+Oftentimes, local configuration values change depending on Rails environment.
+In such cases, you can add environment-specific values to your configuration file:
+
+```yaml
+# config/application.yml
+
+foo: foo
+bar: bar
+
+test:
+  foo: sekret
+  bar: noway
+```
