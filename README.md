@@ -77,3 +77,6 @@ test:
   foo: sekret
   bar: noway
 ```
+
+**Please note:** The environment name (`test` above) is derived from `Mix.env`.
+Any other keys defining nested configuration values will be ignored.
