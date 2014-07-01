@@ -78,5 +78,26 @@ test:
   bar: noway
 ```
 
-**Please note:** The environment name (`test` above) is derived from `Mix.env`.
+You can also nullify configuration values for a specific environment:
+
+```yaml
+# config/application.yml
+
+foo: foo
+bar: bar
+
+test:
+  foo: ~
+```
+
+Assuming you are running from the test environment:
+
+```elixir
+iex> System.get_env("FOO")
+nil
+iex> System.get_env("BAR")
+"bar"
+```
+
+**Please note:** The environment names (`test` above) are derived from `Mix.env`.
 Any other keys defining nested configuration values will be ignored.
