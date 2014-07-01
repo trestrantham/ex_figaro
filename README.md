@@ -64,7 +64,7 @@ to strings. Deeply nested configuration structures are not possible.
 
 ### Environment-Specific Configuration
 
-Oftentimes, local configuration values change depending on Rails environment.
+Oftentimes, local configuration values change depending on your environment.
 In such cases, you can add environment-specific values to your configuration file:
 
 ```yaml
