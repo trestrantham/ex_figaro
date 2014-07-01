@@ -35,6 +35,13 @@ defmodule FigaroTest do
     assert System.get_env("BAR") == "bar"
   end
 
+  test "loading into system environment nullifies environment-specifc overrides" do
+    File.cd! "test/fixtures/project"
+    Application.start(:figaro)
+
+    assert System.get_env("BAZ") == nil
+  end
+
   test "raises an error if application.yml isn't found" do
     File.cd! "test/fixtures/project2"
     assert { :error, _reason } = Application.start(:figaro)

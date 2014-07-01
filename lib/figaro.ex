@@ -1,6 +1,5 @@
 defmodule Figaro do
   use Application
-  alias Figaro.Utils
   alias Figaro.Yaml
   alias Figaro.Config
   alias Figaro.Env
@@ -20,7 +19,7 @@ defmodule Figaro do
   def start_link do
     config = load_config
 
-    set_env(config)
+    Env.update(config)
 
     Agent.start_link(fn -> config end, name: :config)
   end
@@ -40,13 +39,6 @@ defmodule Figaro do
     file
     |> Yaml.parse_file
     |> Config.process_raw
-  end
-
-
-  def set_env(config) do
-    config
-    |> Env.prepare_config
-    |> System.put_env
   end
 
   def config_file do
