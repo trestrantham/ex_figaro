@@ -1,6 +1,9 @@
 defmodule Figaro do
   use Application
   alias Figaro.Utils
+  alias Figaro.Yaml
+  alias Figaro.Config
+  alias Figaro.Env
 
   def start(_type, _args) do
     import Supervisor.Spec
@@ -30,12 +33,19 @@ defmodule Figaro do
   end
 
   def load_config do
-    config_file |> Utils.parse_yaml
+    config_file |> load_config
   end
+
+  def load_config(file) do
+    file
+    |> Yaml.parse_file
+    |> Config.process_raw
+  end
+
 
   def set_env(config) do
     config
-    |> Utils.prepare_for_env
+    |> Env.prepare_config
     |> System.put_env
   end
 
