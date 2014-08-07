@@ -13,19 +13,19 @@ defmodule Figaro.Env do
 
   def prepare_config(config) do
     config
-    |> Enum.filter(fn { key, value } -> !is_map(value) && value != nil end)
+    |> Enum.filter(fn {_key, value} -> !is_map(value) && value != nil end)
     |> format_keys
   end
 
   def format_keys(config) do
     config
-    |> Enum.map(fn { key, value } -> { to_string(key) |> String.upcase, value } end)
+    |> Enum.map(fn {key, value} -> { to_string(key) |> String.upcase, value } end)
   end
 
   def process_nullifications(config) do
     config
-    |> Enum.filter(fn { key, value } -> value == nil end)
+    |> Enum.filter(fn {_key, value} -> value == nil end)
     |> format_keys
-    |> Enum.each(fn { key, value } -> System.delete_env(key) end)
+    |> Enum.each(fn {key, _value} -> System.delete_env(key) end)
   end
 end

@@ -16,15 +16,15 @@ defmodule Figaro.Mixfile do
 
   def application do
     [
-      mod: { Figaro, [] },
+      mod: {Figaro, []},
       applications: []
     ]
   end
 
   defp deps do
     [
-      { :yamler, github: "goertzenator/yamler" },
-      { :excoveralls, github: "parroty/excoveralls", only: [:dev, :test] }
+      {:yamler, github: "goertzenator/yamler"},
+      {:excoveralls, github: "parroty/excoveralls", only: [:dev, :test]}
     ]
   end
 
@@ -33,7 +33,7 @@ defmodule Figaro.Mixfile do
       files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
       contributors: ["Tres Trantham", "Steve Richert"],
       licenses: ["MIT"],
-      links: %{ "GitHub" => "https://github.com/trestrantham/ex_figaro" }
+      links: %{"GitHub" => "https://github.com/trestrantham/ex_figaro"}
     ]
   end
 end

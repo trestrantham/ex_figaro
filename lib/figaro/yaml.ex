@@ -1,6 +1,6 @@
 defmodule Figaro.Yaml do
   def parse_file(file) do
-    { :ok, yaml } = file |> :yaml.load_file([:implicit_atoms])
+    {:ok, yaml} = file |> :yaml.load_file([:implicit_atoms])
 
     yaml
     |> List.flatten
@@ -9,14 +9,14 @@ defmodule Figaro.Yaml do
 
   defp format(list) do
     list
-    |> Enum.map(fn { key, value } ->
+    |> Enum.map(fn {key, value} ->
          value = cond do
            value |> is_list -> format(value)
            value == :null   -> nil
            true             -> value |> to_string
          end
 
-         { key, value }
+         {key, value}
        end)
     |> Enum.into(Map.new)
   end
