@@ -23,7 +23,7 @@ defmodule Figaro.Mixfile do
 
   defp deps do
     [
-      { :yamler, github: "goertzenator/yamler" },
+      { :yamler, github: "goertzenator/yamler", branch: 'master_before_maps' },
       { :excoveralls, github: "parroty/excoveralls", only: [:dev, :test] }
     ]
   end
