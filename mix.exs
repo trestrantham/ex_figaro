@@ -5,7 +5,7 @@ defmodule Figaro.Mixfile do
     [
       app: :figaro,
       version: "0.1.0",
-      elixir: "~> 0.14.1",
+      elixir: "~> 1.2",
       deps: deps,
       test_coverage: [tool: ExCoveralls],
       build_per_environment: true,

@@ -1,5 +1,5 @@
 %{"excoveralls": {:git, "git://github.com/parroty/excoveralls.git", "38625ea6d32d633b184284b5eb5c79e7bfc28258", []},
-  "exprintf": {:package, "0.1.4"},
-  "jsex": {:package, "2.0.0"},
-  "jsx": {:package, "2.0.4"},
+  "exprintf": {:hex, :exprintf, "0.1.6"},
+  "jsex": {:hex, :jsex, "2.0.0"},
+  "jsx": {:hex, :jsx, "2.8.0"},
   "yamler": {:git, "git://github.com/goertzenator/yamler.git", "c0ec227111cfd481c4d2a2895bfef7eea42cbc6b", []}}
